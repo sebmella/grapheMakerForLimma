@@ -1,4 +1,4 @@
-plotGroupMeanVsOverall <- function(Elist, graphe.dir=""){
+plotGroupMeanVsOverall <- function(Elist, return= F, graphe.dir=""){
 	require(ggplot2)
 	require(limma)
 	
@@ -30,8 +30,11 @@ plotGroupMeanVsOverall <- function(Elist, graphe.dir=""){
 		#ploting WT mean vs overall mean in black and KOmean vs overall mean in blue
 		p.WT.KO.vs.overall <- ggplot(expDF, aes(x=mean, y=meanWT))+geom_point(size=1)+geom_point(aes(y=meanKO), size=1, colour="blue")+theme_minimal()+ylab("WTmean(black) - KOmean(blue)")	
 		
-		print(p.WT.KO.vs.overall)		
+		print(p.WT.KO.vs.overall)
 		
+		#returning the plot if return=T
+		if(return) return(p.WT.KO.vs.overall)
+ 		
 		#saving the graphe if graphe.dir specified
 		if(graphe.dir!=""){
 			graphe.name <- paste("p", data.name,"groupVSoverallMean", "png", sep=".")
